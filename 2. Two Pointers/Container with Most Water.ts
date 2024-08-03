@@ -6,6 +6,8 @@ Find two lines that together with the x-axis form a container, such that the con
 Return the maximum amount of water a container can store.
 */
 
+// time: 75.48%, space: 45.50%
+
 function maxArea(height: number[]): number {
   let l = 0;
   let r = height.length - 1;
