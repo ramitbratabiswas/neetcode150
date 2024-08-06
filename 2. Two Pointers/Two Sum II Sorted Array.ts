@@ -8,7 +8,7 @@ The tests are generated such that there is exactly one solution. You may not use
 Your solution must use only constant extra space
 */
 
-// 331 ms
+// 331 ms, binary search
 
 function twoSum(numbers: number[], target: number): number[] {
     let diff = 0;
@@ -42,4 +42,19 @@ function binarySearch(array: number[], target: number) {
         }
     }
     return -1;
+};
+
+function twoSumTwoPointer(numbers: number[], target: number): number[] {
+    let L = 0;
+    let R = numbers.length - 1;
+
+    while (L < R) {
+        if (numbers[L] + numbers[R] === target) return [L+1, R+1];
+        if (numbers[L] + numbers[R] > target) {
+            R--
+        } else {
+            L++
+        }
+    }
+    return [];
 };
