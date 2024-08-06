@@ -6,27 +6,24 @@ The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit int
 You must write an algorithm that runs in O(n) time and without using the division operation.
 */
 
-// 128 ms
+// 106 ms
 
 function productExceptSelf(nums: number[]): number[] {
-    let retArray : number[] = Array.from({length: nums.length});
-    let product : number = 1;
-    let cache : { [key: number] : number } = {}
+    let retArray : number[] = Array(nums.length).fill(1);
+
+    let prefix : number = 1;
 
     for (let i = 0; i < nums.length; i++) {
-        if (cache[nums[i]]) {
-            retArray[i] = cache[nums[i]];
-            continue;
-        }
-        product = 1;
-        for (let j = 0; j < nums.length; j++) {
-            if (i === j) continue;
-            product *= nums[j];
-        }
-        retArray[i] = product;
-        cache[nums[i]] = product;
+        retArray[i] = prefix;
+        prefix *= nums[i];
+    }
+
+    let postfix : number = 1;
+
+    for (let j = nums.length - 1; j >= 0; j--) {
+        retArray[j] *= postfix;
+        postfix *= nums[j];
     }
 
     return retArray;
-
 };
