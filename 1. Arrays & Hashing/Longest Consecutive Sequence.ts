@@ -4,21 +4,27 @@ Given an unsorted array of integers nums, return the length of the longest conse
 You must write an algorithm that runs in O(n) time.
 */
 
-// 21.13%, 71.40%
+// 79.07%, 31.49%
 
 function longestConsecutive(nums: number[]): number {
-  let numSet : Set<number> = new Set<number>(nums);
-  let seqLen = 0, maxSeqLen = 0, curr = 0;
-  for (let i = 0; i < nums.length; i++) {
-      if (!numSet.has(nums[i] - 1)) {
-          seqLen = 1;
-          curr = nums[i];
-          while (numSet.has(curr + 1)) {
+  let numSet: Set<number> = new Set(nums);
+  let maxSeqLen = 0;
+
+  for (let num of numSet) {
+      // Start counting sequence only if num is the start of a sequence
+      if (!numSet.has(num - 1)) {
+          let currentNum = num;
+          let seqLen = 1;
+
+          // Count the sequence
+          while (numSet.has(currentNum + 1)) {
+              currentNum++;
               seqLen++;
-              curr++;
           }
+
+          maxSeqLen = Math.max(maxSeqLen, seqLen);
       }
-      if (seqLen > maxSeqLen) maxSeqLen = seqLen;
   }
+
   return maxSeqLen;
-};
+}
