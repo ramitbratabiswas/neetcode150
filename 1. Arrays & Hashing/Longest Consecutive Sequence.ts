@@ -1,3 +1,11 @@
+/*
+Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
+
+You must write an algorithm that runs in O(n) time.
+*/
+
+// 21.13%, 71.40%
+
 function longestConsecutive(nums: number[]): number {
   let numSet : Set<number> = new Set<number>(nums);
   let seqLen = 0, maxSeqLen = 0, curr = 0;
