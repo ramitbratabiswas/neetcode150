@@ -1,3 +1,6 @@
+
+// 73.55%, 43.05%
+
 function minWindow(s: string, t: string): string {
   if (s.length < t.length || t === "") return "";
   let l: number = 0, r: number = 0;
